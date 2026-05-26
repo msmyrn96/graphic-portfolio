@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #050508;
+  --bg-card: #0d0d14;
+  --bg-surface: #111118;
+  --border: rgba(139, 92, 246, 0.15);
+  --border-hover: rgba(139, 92, 246, 0.4);
+  --text: #e2e8f0;
+  --text-muted: #64748b;
+  --text-secondary: #94a3b8;
+  --accent-1: #818cf8;
+  --accent-2: #a78bfa;
+  --accent-3: #c4b5fd;
+  --green: #34d399;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg);
+}
+
+body {
+  /* transparent so the fixed WebGL canvas shows through the hero */
+  background-color: transparent;
+  color: var(--text);
+  font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Sections after the hero get an opaque background to cover the shader */
+.content-bg {
+  background-color: var(--bg);
+  position: relative;
+  z-index: 1;
+}
+
+::selection {
+  background-color: rgba(129, 140, 248, 0.3);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(129, 140, 248, 0.4);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(129, 140, 248, 0.7);
+}
+
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    var(--accent-1),
+    var(--accent-2),
+    var(--accent-3)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glow {
+  box-shadow:
+    0 0 20px rgba(129, 140, 248, 0.2),
+    0 0 60px rgba(129, 140, 248, 0.05);
+}
+
+.card-glow:hover {
+  box-shadow:
+    0 0 30px rgba(129, 140, 248, 0.15),
+    0 0 60px rgba(129, 140, 248, 0.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
