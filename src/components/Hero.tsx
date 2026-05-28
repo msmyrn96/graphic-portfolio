@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { ArrowDown } from "lucide-react"
 import { personalInfo } from "@/lib/data"
 import { useRef, useState, useEffect } from "react"
-import { SparklesCore } from "@/components/ui/sparkles"
+import ParticleNetwork from "@/components/ui/particle-network"
 
 const roles = [
   "Software Engineer",
@@ -28,31 +28,8 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       id="hero"
     >
-      {/* Sparkles layer — floats above the WebGL shader, below content */}
-      <div
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        aria-hidden="true"
-      >
-        <SparklesCore
-          background="transparent"
-          minSize={0.4}
-          maxSize={1.2}
-          particleDensity={80}
-          className="w-full h-full"
-          particleColor="#3b82f6"
-          speed={2}
-        />
-        {/* Radial mask so particles fade away from centre */}
-        <div
-          className="absolute inset-0 w-full h-full"
-          style={{
-            maskImage:
-              "radial-gradient(ellipse 80% 60% at 50% 50%, transparent 40%, black 100%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse 80% 60% at 50% 50%, transparent 40%, black 100%)",
-          }}
-        />
-      </div>
+      {/* Particle network — transparent canvas over the WebGL shader */}
+      <ParticleNetwork className="absolute inset-0 w-full h-full" />
 
       {/* Bottom fade: transitions shader into the solid content background */}
       <div
@@ -144,8 +121,8 @@ export default function Hero() {
               href="#projects"
               className="px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
               style={{
-                background: "rgba(255,255,255,0.05)",
-                border: "1px solid rgba(255,255,255,0.12)",
+                background: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(59,130,246,0.25)",
                 color: "var(--text)",
               }}
             >

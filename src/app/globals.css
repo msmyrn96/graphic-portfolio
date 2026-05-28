@@ -28,7 +28,7 @@ body {
   /* transparent so the fixed WebGL canvas shows through the hero */
   background-color: transparent;
   color: var(--text);
-  font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+  font-family: var(--font-rubik), "Rubik", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }

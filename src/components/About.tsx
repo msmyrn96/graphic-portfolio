@@ -11,14 +11,14 @@ export default function About() {
   const inView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="about" className="py-24 px-6 max-w-6xl mx-auto" ref={ref}>
+    <section id="about" className="py-32 px-6 max-w-6xl mx-auto" ref={ref}>
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7 }}
       >
         <h2
-          className="text-3xl sm:text-4xl font-bold mb-12"
+          className="text-3xl sm:text-4xl font-bold mb-16"
           style={{ color: "var(--text)" }}
         >
           A bit about <span className="gradient-text">me</span>

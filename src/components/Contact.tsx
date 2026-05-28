@@ -25,7 +25,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-24 px-6 max-w-6xl mx-auto grid grid md:grid-cols-2"
+      className="py-32 px-6 max-w-6xl mx-auto grid grid md:grid-cols-2"
       ref={ref}
     >
       <motion.div

@@ -10,12 +10,12 @@ export default function Experience() {
   const inView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="experience" className="py-24 px-6 max-w-6xl mx-auto" ref={ref}>
+    <section id="experience" className="py-32 px-6 max-w-6xl mx-auto" ref={ref}>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7 }}
-        className="mb-14"
+        className="mb-16"
       >
         <h2
           className="text-3xl sm:text-4xl font-bold"
