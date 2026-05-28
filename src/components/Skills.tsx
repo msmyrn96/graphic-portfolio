@@ -1,21 +1,24 @@
-"use client";
+"use client"
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { skills } from "@/lib/data";
-import { SectionLabel } from "./About";
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
+import { skills } from "@/lib/data"
 
 const categories = [
   { label: "Frontend", key: "frontend" as const, color: "var(--accent-1)" },
-  { label: "Backend & Data", key: "backend" as const, color: "var(--accent-2)" },
+  {
+    label: "Backend & Data",
+    key: "backend" as const,
+    color: "var(--accent-2)",
+  },
   { label: "DevOps & Tools", key: "tools" as const, color: "var(--accent-3)" },
   { label: "AI & LLMs", key: "ai" as const, color: "var(--green)" },
   { label: "Other", key: "other" as const, color: "#94a3b8" },
-];
+]
 
 export default function Skills() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: "-80px" })
 
   return (
     <section id="skills" className="py-24 px-6 max-w-6xl mx-auto" ref={ref}>
@@ -25,10 +28,11 @@ export default function Skills() {
         transition={{ duration: 0.7 }}
         className="mb-14"
       >
-        <SectionLabel>Skills</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-bold" style={{ color: "var(--text)" }}>
-          What I{" "}
-          <span className="gradient-text">work with</span>
+        <h2
+          className="text-3xl sm:text-4xl font-bold"
+          style={{ color: "var(--text)" }}
+        >
+          What I <span className="gradient-text">work with</span>
         </h2>
       </motion.div>
 
@@ -48,9 +52,15 @@ export default function Skills() {
             <div className="flex items-center gap-2 mb-4">
               <div
                 className="w-2 h-2 rounded-full"
-                style={{ background: cat.color, boxShadow: `0 0 8px ${cat.color}` }}
+                style={{
+                  background: cat.color,
+                  boxShadow: `0 0 8px ${cat.color}`,
+                }}
               />
-              <h3 className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--text-muted)" }}>
+              <h3
+                className="text-sm font-semibold uppercase tracking-wider"
+                style={{ color: "var(--text-muted)" }}
+              >
                 {cat.label}
               </h3>
             </div>
@@ -68,8 +78,8 @@ export default function Skills() {
                     color: "var(--text-secondary)",
                   }}
                   whileHover={{
-                    background: "rgba(129,140,248,0.1)",
-                    borderColor: "rgba(129,140,248,0.3)",
+                    background: "rgba(59,130,246,0.1)",
+                    borderColor: "rgba(59,130,246,0.3)",
                     color: "var(--text)",
                     scale: 1.05,
                   }}
@@ -82,5 +92,5 @@ export default function Skills() {
         ))}
       </div>
     </section>
-  );
+  )
 }

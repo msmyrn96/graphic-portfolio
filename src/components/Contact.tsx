@@ -1,63 +1,51 @@
-"use client";
+"use client"
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Mail, ExternalLink, ArrowUpRight } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "./Icons";
-import { personalInfo } from "@/lib/data";
-import { SectionLabel } from "./About";
-
-const contactLinks = [
-  {
-    label: "Email me",
-    value: personalInfo.email,
-    href: `mailto:${personalInfo.email}`,
-    icon: Mail,
-    description: "Best for project inquiries",
-  },
-  {
-    label: "GitHub",
-    value: "@msmyrn96",
-    href: personalInfo.github,
-    icon: GithubIcon,
-    description: "See my open-source work",
-  },
-  {
-    label: "LinkedIn",
-    value: "Emmanouil Smyrnakis",
-    href: personalInfo.linkedin,
-    icon: LinkedinIcon,
-    description: "Professional network",
-  },
-  {
-    label: "Portfolio (legacy)",
-    value: "msmyrn96.github.io",
-    href: personalInfo.portfolio,
-    icon: ExternalLink,
-    description: "Previous version",
-  },
-];
+import { motion, useInView } from "framer-motion"
+import { useRef, useState } from "react"
+import { Mail } from "lucide-react"
+import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect"
+import { headingWords } from "@/lib/data"
 
 export default function Contact() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: "-80px" })
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  })
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
 
   return (
-    <section id="contact" className="py-24 px-6 max-w-6xl mx-auto" ref={ref}>
+    <section
+      id="contact"
+      className="py-24 px-6 max-w-6xl mx-auto grid grid md:grid-cols-2"
+      ref={ref}
+    >
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7 }}
         className="text-center max-w-2xl mx-auto mb-16"
       >
-        <SectionLabel>Contact</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: "var(--text)" }}>
-          Let&apos;s{" "}
-          <span className="gradient-text">work together</span>
-        </h2>
-        <p className="text-lg leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-          I&apos;m always open to discussing new projects, creative ideas, or opportunities to
-          be part of your vision.
+        <TypewriterEffectSmooth
+          words={headingWords}
+          className="justify-center mb-4"
+          textClassName="text-3xl sm:text-4xl"
+          cursorClassName="h-8 sm:h-10"
+        />
+        <p
+          className="text-lg leading-relaxed"
+          style={{ color: "var(--text-secondary)" }}
+        >
+          I&apos;m always open to discussing new projects, creative ideas, or
+          opportunities to be part of your vision.
         </p>
       </motion.div>
 
@@ -67,71 +55,110 @@ export default function Contact() {
         transition={{ duration: 0.7, delay: 0.2 }}
         className="max-w-2xl mx-auto"
       >
-        {/* Primary CTA */}
-        <motion.a
-          href={`mailto:${personalInfo.email}`}
-          className="group flex items-center justify-center gap-3 w-full py-5 rounded-2xl font-semibold text-lg mb-6 transition-all duration-300"
+        <form
+          className="mb-8 p-8 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--accent-1)] focus:ring-opacity-50"
           style={{
-            background: "linear-gradient(135deg, var(--accent-1), var(--accent-2))",
-            color: "#fff",
-            boxShadow: "0 0 40px rgba(129,140,248,0.3), 0 0 80px rgba(129,140,248,0.1)",
+            background: "var(--bg-card)",
+            border: "1px solid var(--border)",
+            color: "var(--text-secondary)",
           }}
-          whileHover={{ scale: 1.02, boxShadow: "0 0 60px rgba(129,140,248,0.5), 0 0 100px rgba(129,140,248,0.15)" }}
-          whileTap={{ scale: 0.98 }}
         >
-          <Mail size={22} />
-          Say hello
-          <ArrowUpRight
-            size={18}
-            className="transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1"
-          />
-        </motion.a>
+          <div className="mb-4 text-left">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium mb-1"
+              style={{ color: "var(--text)" }}
+            >
+              Your Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              className="w-full px-4 py-3 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--accent-1)] focus:ring-opacity-50"
+              style={{
+                background: "var(--bg-card)",
+                border: "1px solid var(--border)",
+                color: "var(--text-secondary)",
+              }}
+              value={formData.name}
+              onChange={handleInputChange}
+            />
+          </div>
 
-        {/* Other links */}
-        <div className="grid grid-cols-2 gap-4">
-          {contactLinks.slice(1).map((link, i) => {
-            const Icon = link.icon;
-            return (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.3 + i * 0.08 }}
-                className="flex items-center gap-3 p-4 rounded-xl transition-all duration-200 group"
+          <div className="mb-4 text-left">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium mb-1"
+              style={{ color: "var(--text)" }}
+            >
+              Your Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              className="w-full px-4 py-3 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--accent-1)] focus:ring-opacity-50"
+              style={{
+                background: "var(--bg-card)",
+                border: "1px solid var(--border)",
+                color: "var(--text-secondary)",
+              }}
+              value={formData.email}
+              onChange={handleInputChange}
+            />
+          </div>
+
+          <div className="mb-4 text-left">
+            <label
+              htmlFor="message"
+              className="block text-sm font-medium mb-1"
+              style={{ color: "var(--text)" }}
+            >
+              Your Message
+              <span className="px-2 text-xs text-[var(--accent-1)]">
+                (optional)
+              </span>
+              <textarea
+                id="message"
+                name="message"
+                rows={4}
+                className="w-full px-4 py-3 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--accent-1)] focus:ring-opacity-50"
                 style={{
                   background: "var(--bg-card)",
                   border: "1px solid var(--border)",
                   color: "var(--text-secondary)",
                 }}
-                whileHover={{
-                  borderColor: "var(--border-hover)",
-                  y: -2,
-                }}
-              >
-                <div className="p-2 rounded-lg" style={{ background: "rgba(129,140,248,0.08)" }}>
-                  <Icon size={16} style={{ color: "var(--accent-1)" }} />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-xs font-medium" style={{ color: "var(--text)" }}>
-                    {link.label}
-                  </p>
-                  <p className="text-xs truncate" style={{ color: "var(--text-muted)" }}>
-                    {link.description}
-                  </p>
-                </div>
-                <ArrowUpRight
-                  size={14}
-                  className="ml-auto shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                  style={{ color: "var(--accent-1)" }}
-                />
-              </motion.a>
-            );
-          })}
-        </div>
+                value={formData.message}
+                onChange={handleInputChange}
+              />
+            </label>
+          </div>
+
+          <motion.button
+            className="group flex items-center justify-center gap-3 w-full py-4 rounded-2xl font-semibold text-lg transition-all duration-300"
+            style={{
+              background:
+                "linear-gradient(135deg, var(--accent-1), var(--accent-2))",
+              color: "#fff",
+              boxShadow:
+                "0 0 40px rgba(59,130,246,0.3), 0 0 80px rgba(59,130,246,0.1)",
+            }}
+            whileHover={{
+              scale: 1.02,
+              boxShadow:
+                "0 0 60px rgba(59,130,246,0.5), 0 0 100px rgba(59,130,246,0.15)",
+            }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Mail size={22} />
+            Say hello
+          </motion.button>
+        </form>
+        {/* Primary CTA */}
       </motion.div>
     </section>
-  );
+  )
 }

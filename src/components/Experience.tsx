@@ -1,14 +1,13 @@
-"use client";
+"use client"
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Briefcase, MapPin } from "lucide-react";
-import { experience } from "@/lib/data";
-import { SectionLabel } from "./About";
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
+import { Briefcase, MapPin } from "lucide-react"
+import { experience } from "@/lib/data"
 
 export default function Experience() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
     <section id="experience" className="py-24 px-6 max-w-6xl mx-auto" ref={ref}>
@@ -18,10 +17,11 @@ export default function Experience() {
         transition={{ duration: 0.7 }}
         className="mb-14"
       >
-        <SectionLabel>Experience</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-bold" style={{ color: "var(--text)" }}>
-          Where I&apos;ve{" "}
-          <span className="gradient-text">worked</span>
+        <h2
+          className="text-3xl sm:text-4xl font-bold"
+          style={{ color: "var(--text)" }}
+        >
+          Where I&apos;ve <span className="gradient-text">worked</span>
         </h2>
       </motion.div>
 
@@ -30,19 +30,25 @@ export default function Experience() {
         <div
           className="absolute left-6 top-0 bottom-0 w-px hidden md:block"
           style={{
-            background: "linear-gradient(to bottom, var(--accent-1), transparent)",
+            background:
+              "linear-gradient(to bottom, var(--accent-1), transparent)",
             opacity: 0.3,
           }}
         />
 
         <div className="space-y-6">
           {experience.map((job, i) => (
-            <ExperienceCard key={job.company + job.period} job={job} index={i} inView={inView} />
+            <ExperienceCard
+              key={job.company + job.period}
+              job={job}
+              index={i}
+              inView={inView}
+            />
           ))}
         </div>
       </div>
     </section>
-  );
+  )
 }
 
 function ExperienceCard({
@@ -50,9 +56,9 @@ function ExperienceCard({
   index,
   inView,
 }: {
-  job: (typeof experience)[0];
-  index: number;
-  inView: boolean;
+  job: (typeof experience)[0]
+  index: number
+  inView: boolean
 }) {
   return (
     <motion.div
@@ -100,12 +106,18 @@ function ExperienceCard({
                 </span>
               )}
             </div>
-            <h3 className="text-lg font-semibold" style={{ color: "var(--text)" }}>
+            <h3
+              className="text-lg font-semibold"
+              style={{ color: "var(--text)" }}
+            >
               {job.company}
             </h3>
           </div>
           <div className="text-right">
-            <p className="text-sm font-medium" style={{ color: "var(--text-muted)" }}>
+            <p
+              className="text-sm font-medium"
+              style={{ color: "var(--text-muted)" }}
+            >
               {job.period}
             </p>
             <div className="flex items-center gap-1 justify-end mt-1">
@@ -124,7 +136,10 @@ function ExperienceCard({
                 className="w-1.5 h-1.5 rounded-full mt-2 shrink-0"
                 style={{ background: "var(--accent-2)" }}
               />
-              <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+              <p
+                className="text-sm leading-relaxed"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 {bullet}
               </p>
             </li>
@@ -132,5 +147,5 @@ function ExperienceCard({
         </ul>
       </motion.div>
     </motion.div>
-  );
+  )
 }

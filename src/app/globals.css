@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #050508;
-  --bg-card: #0d0d14;
-  --bg-surface: #111118;
-  --border: rgba(139, 92, 246, 0.15);
-  --border-hover: rgba(139, 92, 246, 0.4);
-  --text: #e2e8f0;
-  --text-muted: #64748b;
-  --text-secondary: #94a3b8;
-  --accent-1: #818cf8;
-  --accent-2: #a78bfa;
-  --accent-3: #c4b5fd;
-  --green: #34d399;
+  --bg: #09090b;
+  --bg-card: #111113;
+  --bg-surface: #1a1a1e;
+  --border: rgba(59, 130, 246, 0.15);
+  --border-hover: rgba(59, 130, 246, 0.4);
+  --text: #f4f4f5;
+  --text-muted: #52525b;
+  --text-secondary: #a1a1aa;
+  --accent-1: #0e69fc;
+  --accent-2: #4e9af7;
+  --accent-3: #7eb9fc;
+  --green: #22c55e;
 }
 
 * {
@@ -41,7 +41,7 @@ body {
 }
 
 ::selection {
-  background-color: rgba(129, 140, 248, 0.3);
+  background-color: rgba(59, 130, 246, 0.3);
   color: #fff;
 }
 
@@ -54,12 +54,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(129, 140, 248, 0.4);
+  background: rgba(59, 130, 246, 0.4);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(129, 140, 248, 0.7);
+  background: rgba(59, 130, 246, 0.7);
 }
 
 .gradient-text {
@@ -76,14 +76,14 @@ body {
 
 .glow {
   box-shadow:
-    0 0 20px rgba(129, 140, 248, 0.2),
-    0 0 60px rgba(129, 140, 248, 0.05);
+    0 0 20px rgba(59, 130, 246, 0.2),
+    0 0 60px rgba(59, 130, 246, 0.05);
 }
 
 .card-glow:hover {
   box-shadow:
-    0 0 30px rgba(129, 140, 248, 0.15),
-    0 0 60px rgba(129, 140, 248, 0.05);
+    0 0 30px rgba(59, 130, 246, 0.15),
+    0 0 60px rgba(59, 130, 246, 0.05);
 }
 
 @media (prefers-reduced-motion: reduce) {

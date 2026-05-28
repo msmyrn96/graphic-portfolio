@@ -1,3 +1,6 @@
+import { GithubIcon, LinkedinIcon } from "@/components/Icons"
+import { ExternalLink, Mail } from "lucide-react"
+
 export const personalInfo = {
   name: "Emmanouil Smyrnakis",
   shortName: "Manos",
@@ -12,15 +15,23 @@ export const personalInfo = {
   languages: ["Greek", "English"],
   tagline:
     "Building scalable React apps & AI-powered web experiences. Passionate about clean architecture and modern frontend engineering.",
-};
+}
 
 export const skills = {
-  frontend: ["React", "Next.js", "TypeScript", "JavaScript", "HTML/CSS", "Tailwind CSS", "Angular"],
+  frontend: [
+    "React",
+    "Next.js",
+    "TypeScript",
+    "JavaScript",
+    "HTML/CSS",
+    "Tailwind CSS",
+    "Angular",
+  ],
   backend: ["Node.js", "REST APIs", "GraphQL", "SQL"],
   tools: ["Git", "CI/CD", "Docker", "Kubernetes", "GitHub Actions"],
   ai: ["OpenAI API", "Claude API", "Prompt Engineering", "LLM Integration"],
   other: ["XState", "State Machines", "WordPress", "Java", "C++"],
-};
+}
 
 export const experience = [
   {
@@ -81,7 +92,7 @@ export const experience = [
       "Created a reusable web component library, streamlining development time across future projects",
     ],
   },
-];
+]
 
 export const education = [
   {
@@ -100,17 +111,25 @@ export const education = [
     location: "Heraklion, Crete",
     year: "Mar 2021",
   },
-];
+]
 
 export const projects = [
   {
-    title: "Personal Portfolio",
-    period: "Aug 2024 — Oct 2024",
+    title: "AI Tech News Feed",
+    period: "May 2026",
     description:
-      "Visually engaging React portfolio with CI/CD pipeline via GitHub Actions — automated testing, building, and deployment.",
-    tags: ["React", "GitHub Actions", "CI/CD"],
-    url: "https://msmyrn96.github.io/Portfolio/",
+      "Real-time news feed web app using React and OpenAI API to summarize and categorize tech news articles, with user-customizable topics and sentiment analysis.",
+    tags: ["React", "Python", "OpenAI API", "FastAPI"],
+    url: "https://tech-news-viralizer.vercel.app/",
   },
+  // {
+  //   title: "Personal Portfolio",
+  //   period: "Aug 2024 — Oct 2024",
+  //   description:
+  //     "Visually engaging React portfolio with CI/CD pipeline via GitHub Actions — automated testing, building, and deployment.",
+  //   tags: ["React", "GitHub Actions", "CI/CD"],
+  //   url: "https://msmyrn96.github.io/Portfolio/",
+  // },
   {
     title: "KG-enriched File Explorer",
     period: "Sep 2023 — Feb 2024",
@@ -127,13 +146,14 @@ export const projects = [
     tags: ["React", "Gamification", "Web Platform"],
     url: "https://users.ics.forth.gr/~papadako/publications/Papadakos-2021-ECIR-demo.pdf",
   },
-];
+]
 
 export const publications = [
   {
     title:
       "Chattack: A Gamified Crowd-sourcing Platform for Tagging Deceptive & Abusive Behaviour",
-    institution: "University of Crete, Information Systems Laboratory FORTH-ICS",
+    institution:
+      "University of Crete, Information Systems Laboratory FORTH-ICS",
     date: "Feb 20, 2022",
     url: "https://users.ics.forth.gr/~papadako/publications/Papadakos-2021-ECIR-demo.pdf",
   },
@@ -144,4 +164,29 @@ export const publications = [
     date: "March 2024",
     url: "https://elocus.lib.uoc.gr//dlib/a/6/c/attached-metadata-dlib-1715684190-765263-26151/MSc_Thesis_Emmanouil_Smyrnakis.pdf",
   },
-];
+]
+
+export const personalLinks = [
+  { href: personalInfo.github, icon: GithubIcon, label: "GitHub" },
+  {
+    href: personalInfo.linkedin,
+    icon: LinkedinIcon,
+    label: "LinkedIn",
+  },
+  {
+    href: `mailto:${personalInfo.email}`,
+    icon: Mail,
+    label: "Email",
+  },
+  {
+    href: personalInfo.portfolio,
+    icon: ExternalLink,
+    label: "Old Portfolio",
+  },
+]
+
+export const headingWords = [
+  { text: "Let's" },
+  { text: "work" },
+  { text: "together.", className: "text-[var(--accent-2)]" },
+]

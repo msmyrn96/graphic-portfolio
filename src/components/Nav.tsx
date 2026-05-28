@@ -42,7 +42,7 @@ export default function Nav() {
           className="w-full mx-auto px-6 py-4 flex items-center justify-center"
           style={{
             borderBottom: scrolled
-              ? "1px solid rgba(139,92,246,0.12)"
+              ? "1px solid rgba(59,130,246,0.12)"
               : "1px solid transparent",
             backdropFilter: scrolled ? "blur(20px)" : "none",
           }}
