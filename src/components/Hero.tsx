@@ -158,7 +158,7 @@ function AnimatedRoles({ roles }: { roles: string[] }) {
   useEffect(() => {
     const timer = setInterval(
       () => setIndex((i) => (i + 1) % roles.length),
-      2800,
+      1500,
     )
     return () => clearInterval(timer)
   }, [roles.length])

@@ -7,7 +7,7 @@ import Skills from "@/components/Skills"
 import Education from "@/components/Education"
 import Contact from "@/components/Contact"
 import Footer from "@/components/Footer"
-import ShaderBackground from "@/components/ui/shader-background"
+import { Starfield } from "@/components/ui/starfield-1"
 
 export default function Home() {
   return (
@@ -16,6 +16,7 @@ export default function Home() {
       <main>
         <Hero />
         <div className="content-bg">
+          <Starfield />
           <About />
           <Experience />
           <Projects />

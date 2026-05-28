@@ -1,5 +1,5 @@
 import { GithubIcon, LinkedinIcon } from "@/components/Icons"
-import { ExternalLink, Mail } from "lucide-react"
+import { ExternalLink, Flag, Globe, Mail, MapPin } from "lucide-react"
 
 export const personalInfo = {
   name: "Emmanouil Smyrnakis",
@@ -189,4 +189,18 @@ export const headingWords = [
   { text: "Let's" },
   { text: "work" },
   { text: "together.", className: "text-[var(--accent-2)]" },
+]
+
+export const imageInfoText = [
+  { icon: MapPin, label: "Location", value: personalInfo.location },
+  {
+    icon: Flag,
+    label: "Nationality",
+    value: personalInfo.nationalities.join(" · "),
+  },
+  {
+    icon: Globe,
+    label: "Languages",
+    value: personalInfo.languages.join(" · "),
+  },
 ]
