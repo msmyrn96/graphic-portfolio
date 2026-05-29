@@ -1,4 +1,5 @@
 import { GithubIcon, LinkedinIcon } from "@/components/Icons"
+import { IconItem } from "@/components/Skills"
 import { ExternalLink, Flag, Globe, Mail, MapPin } from "lucide-react"
 
 export const personalInfo = {
@@ -202,5 +203,73 @@ export const imageInfoText = [
     icon: Globe,
     label: "Languages",
     value: personalInfo.languages.join(" · "),
+  },
+]
+
+export const Row_1_Tools: IconItem[] = [
+  {
+    url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+    name: "React",
+  },
+  {
+    url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+    name: "TypeScript",
+  },
+  {
+    url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+    name: "JavaScript",
+  },
+  {
+    url: "https://cdn.simpleicons.org/nextdotjs/ffffff",
+    name: "Next.js",
+  },
+  {
+    url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+    name: "Tailwind CSS",
+  },
+  {
+    url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg",
+    name: "Angular",
+  },
+  {
+    url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
+    name: "Node.js",
+  },
+  {
+    url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/graphql/graphql-plain.svg",
+    name: "GraphQL",
+  },
+]
+
+export const Row_2_Tools: IconItem[] = [
+  {
+    url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
+    name: "Git",
+  },
+  {
+    url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
+    name: "Docker",
+  },
+  {
+    url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
+    name: "GitHub",
+    invert: true,
+  },
+  {
+    url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-plain.svg",
+    name: "Kubernetes",
+  },
+  {
+    url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
+    name: "PostgreSQL",
+  },
+  {
+    url: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/openai.svg",
+    name: "OpenAI",
+    invert: true,
+  },
+  {
+    url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
+    name: "HTML5",
   },
 ]

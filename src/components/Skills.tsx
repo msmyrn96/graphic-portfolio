@@ -1,32 +1,48 @@
 "use client"
 
+import { Row_1_Tools, Row_2_Tools } from "@/lib/data"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { skills } from "@/lib/data"
 
-const categories = [
-  { label: "Frontend", key: "frontend" as const, color: "var(--accent-1)" },
-  {
-    label: "Backend & Data",
-    key: "backend" as const,
-    color: "var(--accent-2)",
-  },
-  { label: "DevOps & Tools", key: "tools" as const, color: "var(--accent-3)" },
-  { label: "AI & LLMs", key: "ai" as const, color: "var(--green)" },
-  { label: "Other", key: "other" as const, color: "#94a3b8" },
-]
+export type IconItem = { url: string; name: string; invert?: boolean }
+
+const repeat = (icons: IconItem[], times = 4) =>
+  Array.from({ length: times }).flatMap(() => icons)
+
+function IconTile({ icon }: { icon: IconItem }) {
+  return (
+    <div
+      className="h-24 w-24 flex-shrink-0 rounded-2xl flex items-center justify-center"
+      title={icon.name}
+      style={{
+        background: "var(--bg-surface)",
+        border: "1px solid var(--border)",
+      }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={icon.url}
+        alt={icon.name}
+        width={48}
+        height={48}
+        className={`object-contain${icon.invert ? " invert" : ""}`}
+        loading="lazy"
+      />
+    </div>
+  )
+}
 
 export default function Skills() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: "-80px" })
 
   return (
-    <section id="skills" className="py-32 px-6 max-w-6xl mx-auto" ref={ref}>
+    <section id="skills" className="py-32 max-w-6xl mx-auto" ref={ref}>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7 }}
-        className="mb-16"
+        className="mb-16 px-6"
       >
         <h2
           className="text-3xl sm:text-4xl font-bold"
@@ -36,61 +52,41 @@ export default function Skills() {
         </h2>
       </motion.div>
 
-      <div className="grid sm:grid-cols-2 gap-6">
-        {categories.map((cat, ci) => (
-          <motion.div
-            key={cat.key}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: ci * 0.1 }}
-            className="p-6 rounded-2xl"
-            style={{
-              background: "var(--bg-card)",
-              border: "1px solid var(--border)",
-            }}
-          >
-            <div className="flex items-center gap-2 mb-4">
-              <div
-                className="w-2 h-2 rounded-full"
-                style={{
-                  background: cat.color,
-                  boxShadow: `0 0 8px ${cat.color}`,
-                }}
-              />
-              <h3
-                className="text-sm font-semibold uppercase tracking-wider"
-                style={{ color: "var(--text-muted)" }}
-              >
-                {cat.label}
-              </h3>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {skills[cat.key].map((skill, si) => (
-                <motion.span
-                  key={skill}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={inView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.4, delay: ci * 0.1 + si * 0.04 }}
-                  className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-default"
-                  style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                    color: "var(--text-secondary)",
-                  }}
-                  whileHover={{
-                    background: "rgba(59,130,246,0.1)",
-                    borderColor: "rgba(59,130,246,0.3)",
-                    color: "var(--text)",
-                    scale: 1.05,
-                  }}
-                >
-                  {skill}
-                </motion.span>
-              ))}
-            </div>
-          </motion.div>
-        ))}
-      </div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.8, delay: 0.25 }}
+        className="skill-carousel overflow-hidden relative pb-3"
+      >
+        {/* Row 1 — scrolls left */}
+        <div className="skill-row-left flex gap-5 whitespace-nowrap">
+          {repeat(Row_1_Tools, 4).map((icon, i) => (
+            <IconTile key={i} icon={icon} />
+          ))}
+        </div>
+
+        {/* Row 2 — scrolls right */}
+        <div className="skill-row-right flex gap-5 whitespace-nowrap mt-6">
+          {repeat(Row_2_Tools, 4).map((icon, i) => (
+            <IconTile key={i} icon={icon} />
+          ))}
+        </div>
+
+        {/* Left fade */}
+        <div
+          className="absolute left-0 top-0 h-full w-28 pointer-events-none"
+          style={{
+            background: "linear-gradient(to right, var(--bg), transparent)",
+          }}
+        />
+        {/* Right fade */}
+        <div
+          className="absolute right-0 top-0 h-full w-28 pointer-events-none"
+          style={{
+            background: "linear-gradient(to left, var(--bg), transparent)",
+          }}
+        />
+      </motion.div>
     </section>
   )
 }

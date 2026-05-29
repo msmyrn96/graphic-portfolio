@@ -7,14 +7,13 @@ export const ImageInfo = () => {
       {imageInfoText.map(({ icon: Icon, label, value }) => (
         <motion.div
           key={label}
-          className="flex items-center p-2 rounded-xl"
+          className="flex items-center p-1 rounded-xl"
           transition={{ duration: 0.2 }}
         >
           <div className="p-2 rounded-lg">
             <Icon size={18} style={{ color: "var(--text)" }} />
           </div>
           <div>
-            {/* <p className="text-xs uppercase tracking-widest mb-0.5">{label}</p> */}
             <p className="text-sm font-medium" style={{ color: "var(--text)" }}>
               {value}
             </p>

@@ -73,13 +73,7 @@ function ProjectCard({
       />
 
       <div className="relative z-10">
-        <div className="flex items-start justify-between mb-4">
-          <div
-            className="p-2.5 rounded-xl"
-            style={{ background: "rgba(59,130,246,0.1)" }}
-          >
-            <ExternalLink size={18} style={{ color: "var(--accent-1)" }} />
-          </div>
+        <div className="flex items-start justify-end mb-4">
           <motion.div
             className="opacity-0 group-hover:opacity-100 transition-opacity duration-200"
             whileHover={{ scale: 1.1 }}

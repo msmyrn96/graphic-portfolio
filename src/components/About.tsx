@@ -14,7 +14,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="py-24 px-6 max-w-6xl mx-auto align-center"
+      className="py-32 px-6 max-w-6xl mx-auto align-center"
       ref={ref}
     >
       <motion.div

@@ -18,17 +18,45 @@ export const TypewriterEffect = ({
   className?: string
   cursorClassName?: string
 }) => {
-  const wordsArray = words.map((word) => ({ ...word, text: word.text.split("") }))
+  const wordsArray = words.map((word) => ({
+    ...word,
+    text: word.text.split(""),
+  }))
   const [scope, animate] = useAnimate()
   const isInView = useInView(scope)
 
   useEffect(() => {
-    if (isInView) {
-      animate(
-        "span",
-        { display: "inline-block", opacity: 1, width: "fit-content" },
-        { duration: 0.3, delay: stagger(0.1), ease: "easeInOut" },
-      )
+    if (!isInView) return
+
+    let cancelled = false
+
+    const run = async () => {
+      while (!cancelled) {
+        await animate(
+          "span",
+          { display: "inline-block", opacity: 1, width: "fit-content" },
+          { duration: 0.3, delay: stagger(0.1), ease: "easeInOut" },
+        )
+        if (cancelled) break
+        await new Promise((r) => setTimeout(r, 3000))
+        if (cancelled) break
+        await animate(
+          "span",
+          { opacity: 0, width: 0 },
+          {
+            duration: 0.15,
+            delay: stagger(0.05, { from: "last" }),
+            ease: "easeInOut",
+          },
+        )
+        if (cancelled) break
+        await new Promise((r) => setTimeout(r, 400))
+      }
+    }
+
+    run()
+    return () => {
+      cancelled = true
     }
   }, [isInView, animate])
 
@@ -41,7 +69,10 @@ export const TypewriterEffect = ({
               <motion.span
                 key={`char-${index}`}
                 initial={{ opacity: 0, width: 0 }}
-                className={cn("opacity-0 hidden text-[var(--text)]", word.className)}
+                className={cn(
+                  "opacity-0 hidden text-[var(--text)]",
+                  word.className,
+                )}
               >
                 {char}
               </motion.span>
@@ -54,7 +85,10 @@ export const TypewriterEffect = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
-        className={cn("inline-block rounded-sm w-[4px] h-[0.8em] align-middle", cursorClassName)}
+        className={cn(
+          "inline-block rounded-sm w-[4px] h-[0.8em] align-middle",
+          cursorClassName,
+        )}
         style={{ background: "var(--accent-1)" }}
       />
     </div>
@@ -72,14 +106,20 @@ export const TypewriterEffectSmooth = ({
   textClassName?: string
   cursorClassName?: string
 }) => {
-  const wordsArray = words.map((word) => ({ ...word, text: word.text.split("") }))
+  const wordsArray = words.map((word) => ({
+    ...word,
+    text: word.text.split(""),
+  }))
 
   const renderWords = () => (
     <div>
       {wordsArray.map((word, idx) => (
         <div key={`word-${idx}`} className="inline-block">
           {word.text.map((char, index) => (
-            <span key={`char-${index}`} className={cn("text-[var(--text)]", word.className)}>
+            <span
+              key={`char-${index}`}
+              className={cn("text-[var(--text)]", word.className)}
+            >
               {char}
             </span>
           ))}
@@ -95,8 +135,15 @@ export const TypewriterEffectSmooth = ({
         className="overflow-hidden pb-1"
         initial={{ width: "0%" }}
         whileInView={{ width: "fit-content" }}
-        viewport={{ once: true }}
-        transition={{ duration: 2, ease: "linear", delay: 0.3 }}
+        viewport={{ once: false }}
+        transition={{
+          duration: 2,
+          ease: "linear",
+          delay: 0.3,
+          repeat: Infinity,
+          repeatType: "mirror",
+          repeatDelay: 3.5,
+        }}
       >
         <div className={cn("font-bold whitespace-nowrap", textClassName)}>
           {renderWords()}

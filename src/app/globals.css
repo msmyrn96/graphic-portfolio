@@ -85,6 +85,25 @@ body {
     0 0 60px rgba(59, 130, 246, 0.05);
 }
 
+@keyframes skill-scroll-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes skill-scroll-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+.skill-row-left {
+  animation: skill-scroll-left 40s linear infinite;
+}
+.skill-row-right {
+  animation: skill-scroll-right 40s linear infinite;
+}
+.skill-carousel:hover .skill-row-left,
+.skill-carousel:hover .skill-row-right {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
