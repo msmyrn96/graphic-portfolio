@@ -79,7 +79,7 @@ export function Starfield({
       )
     }
 
-    const resize = () => {
+    const applyResize = () => {
       const prevW = canvas.width
       const prevH = canvas.height
       measure()
@@ -90,55 +90,37 @@ export function Starfield({
       canvas.height = h
       ctx.fillStyle = bgColor
       ctx.strokeStyle = starColor
-      stars = stars.map((s): Star => {
-        const n = [...s] as Star
-        n[0] = s[0] * rw
-        n[1] = s[1] * rh
-        n[3] = cx + (n[0] / n[2]) * ratio
-        n[4] = cy + (n[1] / n[2]) * ratio
-        return n
-      })
+      for (const s of stars) {
+        s[0] *= rw
+        s[1] *= rh
+        s[3] = cx + (s[0] / s[2]) * ratio
+        s[4] = cy + (s[1] / s[2]) * ratio
+      }
     }
+
+    const ro = new ResizeObserver(applyResize)
+    const parent = canvas.parentElement
+    if (parent) ro.observe(parent)
 
     const update = () => {
       mouse.x = (cursor.x - cx) / easing
       mouse.y = (cursor.y - cy) / easing
-      stars = stars.map((s): Star => {
-        const n = [...s] as Star
-        n[7] = true
-        n[5] = n[3]
-        n[6] = n[4]
-        n[0] += mouse.x >> 4
-        if (n[0] > cx << 1) {
-          n[0] -= w << 1
-          n[7] = false
-        }
-        if (n[0] < -(cx << 1)) {
-          n[0] += w << 1
-          n[7] = false
-        }
-        n[1] += mouse.y >> 4
-        if (n[1] > cy << 1) {
-          n[1] -= h << 1
-          n[7] = false
-        }
-        if (n[1] < -(cy << 1)) {
-          n[1] += h << 1
-          n[7] = false
-        }
-        n[2] -= speed
-        if (n[2] > z) {
-          n[2] -= z
-          n[7] = false
-        }
-        if (n[2] < 0) {
-          n[2] += z
-          n[7] = false
-        }
-        n[3] = cx + (n[0] / n[2]) * ratio
-        n[4] = cy + (n[1] / n[2]) * ratio
-        return n
-      })
+      for (const s of stars) {
+        s[7] = true
+        s[5] = s[3]
+        s[6] = s[4]
+        s[0] += mouse.x >> 4
+        if (s[0] > cx << 1) { s[0] -= w << 1; s[7] = false }
+        if (s[0] < -(cx << 1)) { s[0] += w << 1; s[7] = false }
+        s[1] += mouse.y >> 4
+        if (s[1] > cy << 1) { s[1] -= h << 1; s[7] = false }
+        if (s[1] < -(cy << 1)) { s[1] += h << 1; s[7] = false }
+        s[2] -= speed
+        if (s[2] > z) { s[2] -= z; s[7] = false }
+        if (s[2] < 0) { s[2] += z; s[7] = false }
+        s[3] = cx + (s[0] / s[2]) * ratio
+        s[4] = cy + (s[1] / s[2]) * ratio
+      }
     }
 
     const draw = () => {
@@ -158,14 +140,12 @@ export function Starfield({
     }
 
     const animate = () => {
-      resize()
       update()
       draw()
       rafId = requestAnimationFrame(animate)
     }
 
     const onMouseMove = (e: MouseEvent) => {
-      const parent = canvas.parentElement
       if (parent) {
         cursor.x = e.pageX || e.clientX + parent.scrollLeft - parent.clientLeft
         cursor.y = e.pageY || e.clientY + parent.scrollTop - parent.clientTop
@@ -176,11 +156,11 @@ export function Starfield({
     spawn()
     rafId = requestAnimationFrame(animate)
 
-    const parent = canvas.parentElement
     if (mouseAdjust && parent) parent.addEventListener("mousemove", onMouseMove)
 
     return () => {
       cancelAnimationFrame(rafId)
+      ro.disconnect()
       if (mouseAdjust && parent)
         parent.removeEventListener("mousemove", onMouseMove)
     }

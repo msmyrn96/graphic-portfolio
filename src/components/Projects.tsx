@@ -73,13 +73,27 @@ function ProjectCard({
       />
 
       <div className="relative z-10">
-        <div className="flex items-start justify-end mb-4">
+        <div className="mb-4 relative w-full">
           <motion.div
-            className="opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute top-2 right-2"
             whileHover={{ scale: 1.1 }}
           >
-            <ArrowUpRight size={18} style={{ color: "var(--accent-1)" }} />
+            <ArrowUpRight
+              size={18}
+              style={{
+                color: "white",
+                background:
+                  "linear-gradient(135deg, var(--accent-1), var(--accent-2),var(--accent-3))",
+                padding: "2px",
+                borderRadius: "4px",
+              }}
+            />
           </motion.div>
+          <img
+            src={project.imageUrl}
+            alt={`${project.title} screenshot`}
+            className="rounded-lg object-cover"
+          />
         </div>
 
         <p className="text-xs mb-2" style={{ color: "var(--text-muted)" }}>

@@ -95,16 +95,23 @@ export const experience = [
   },
 ]
 
-export const education = [
+export const education: {
+  degree: string
+  institution: string
+  location: string
+  year: string
+  thesis?: string
+  thesisUrl?: string
+}[] = [
   {
     degree: "MSc Computer Science — Information Retrieval",
     institution: "University of Crete",
     location: "Heraklion, Crete",
     year: "Mar 2024",
-    thesis:
-      "From File Folders to Knowledge Graphs: An Automatic and Configurable Symbiotic Approach",
-    thesisUrl:
-      "https://elocus.lib.uoc.gr//dlib/a/6/c/attached-metadata-dlib-1715684190-765263-26151/MSc_Thesis_Emmanouil_Smyrnakis.pdf",
+    // thesis:
+    //   "From File Folders to Knowledge Graphs: An Automatic and Configurable Symbiotic Approach",
+    // thesisUrl:
+    //   "https://elocus.lib.uoc.gr//dlib/a/6/c/attached-metadata-dlib-1715684190-765263-26151/MSc_Thesis_Emmanouil_Smyrnakis.pdf",
   },
   {
     degree: "BSc Computer Science",
@@ -117,11 +124,12 @@ export const education = [
 export const projects = [
   {
     title: "AI Tech News Feed",
-    period: "May 2026",
+    period: "May 2026 - Present",
     description:
       "Real-time news feed web app using React and OpenAI API to summarize and categorize tech news articles, with user-customizable topics and sentiment analysis.",
     tags: ["React", "Python", "OpenAI API", "FastAPI"],
     url: "https://tech-news-viralizer.vercel.app/",
+    imageUrl: "/images/tech.png",
   },
   // {
   //   title: "Personal Portfolio",
@@ -132,25 +140,37 @@ export const projects = [
   //   url: "https://msmyrn96.github.io/Portfolio/",
   // },
   {
-    title: "KG-enriched File Explorer",
-    period: "Sep 2023 — Feb 2024",
+    title: "Bado Trivial - Quiz Nights (Maintainer/Developer)",
+    period: "February 2026 - Present",
     description:
-      "Knowledge graph database to store and query semantic relationships between files, with an intuitive UI for advanced search and filtering.",
-    tags: ["Knowledge Graphs", "SPARQL", "React", "Semantic Web"],
-    url: "https://elocus.lib.uoc.gr//dlib/a/6/c/attached-metadata-dlib-1715684190-765263-26151/MSc_Thesis_Emmanouil_Smyrnakis.pdf",
+      "Webpage for hosting quiz nights, built with React and Tailwind CSS, showcasing my ability to create engaging user interfaces and manage open-source projects.",
+    tags: ["Next JS", "Tailwind CSS", "Animations", "Cloudflare"],
+    url: "https://www.badotrivial.gr/",
+    imageUrl: "/images/bado.png",
   },
   {
-    title: "Crowdsourcing Web Platform",
-    period: "Dec 2019 — Jul 2020",
+    title: "Building Materials Webpage",
+    period: "June 2025 - October 2024",
     description:
-      "Gamified platform for tagging deceptive/abusive behavior — points, badges, leaderboards — with full user anonymity and privacy safeguards.",
-    tags: ["React", "Gamification", "Web Platform"],
-    url: "https://users.ics.forth.gr/~papadako/publications/Papadakos-2021-ECIR-demo.pdf",
+      "A responsive website for a building materials company, built with WordPress and custom themes, demonstrating my skills in web design, SEO optimization, and content management.",
+    tags: ["Wordpress", "Hosting", "Responsive Design", "SEO"],
+    url: "https://michelakisbuildingmaterials.gr/",
+    imageUrl: "/images/michelakis.png",
   },
+  // {
+  //   title: "Transfers Feed Application",
+  //   period: "March 2025 - May 2025",
+  //   description:
+  //     "A responsive web app that displays a feed of scheduled guest transfers, grouped by day and sorted chronologically.",
+  //   tags: ["React", "TypeScript", "Tailwind CSS", "CRM"],
+  //   url: "https://transfers-feed-app.vercel.app/scheduled",
+  //   imageUrl: "/images/crm.png",
+  // },
 ]
 
 export const publications = [
   {
+    thesis: "BSc",
     title:
       "Chattack: A Gamified Crowd-sourcing Platform for Tagging Deceptive & Abusive Behaviour",
     institution:
@@ -159,6 +179,7 @@ export const publications = [
     url: "https://users.ics.forth.gr/~papadako/publications/Papadakos-2021-ECIR-demo.pdf",
   },
   {
+    thesis: "MSc",
     title:
       "From File Folders to Knowledge Graphs: An Automatic and Configurable Symbiotic Approach",
     institution: "University of Crete — Computer Science Department",
