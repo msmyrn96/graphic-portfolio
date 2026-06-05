@@ -31,8 +31,7 @@ export default function Experience() {
           className="absolute left-6 top-0 bottom-0 w-px hidden md:block"
           style={{
             background:
-              "linear-gradient(to bottom, var(--accent-1), transparent)",
-            opacity: 0.3,
+              "linear-gradient(to bottom, var(--accent-1), rgba(14,105,252,0.08))",
           }}
         />
 

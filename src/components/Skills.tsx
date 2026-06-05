@@ -12,7 +12,7 @@ const repeat = (icons: IconItem[], times = 4) =>
 function IconTile({ icon }: { icon: IconItem }) {
   return (
     <div
-      className="h-24 w-24 flex-shrink-0 rounded-2xl flex items-center justify-center"
+      className="h-24 w-24 flex-shrink-0 rounded-2xl flex items-center justify-center flex-col gap-2"
       title={icon.name}
       style={{
         background: "var(--bg-surface)",
@@ -28,6 +28,12 @@ function IconTile({ icon }: { icon: IconItem }) {
         className={`object-contain${icon.invert ? " invert" : ""}`}
         loading="lazy"
       />
+      <p
+        className="text-[12px] font-medium"
+        style={{ color: "var(--text-secondary)" }}
+      >
+        {icon.name}
+      </p>
     </div>
   )
 }

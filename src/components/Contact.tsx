@@ -5,10 +5,12 @@ import { useRef, useState } from "react"
 import { Mail } from "lucide-react"
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect"
 import { headingWords } from "@/lib/data"
+import { showToast } from "nextjs-toast-notify"
 
 export default function Contact() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: "-80px" })
+  const [isSending, setIsSending] = useState<boolean>(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,6 +22,48 @@ export default function Contact() {
   ) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    //confirm email and message field are not empty
+    if (!formData.email || !formData.message) {
+      showToast.info("Email and message are required fields")
+      return
+    }
+
+    try {
+      setIsSending(true)
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          message: formData.message,
+          name: formData.name,
+        }),
+      })
+
+      // handle success
+      if (response.ok) {
+        showToast.success("Email Sent Successfully!")
+        setFormData({
+          email: "",
+          message: "",
+          name: "",
+        })
+      } else {
+        showToast.error("There was a problem sending email. Pls try again!")
+      }
+    } catch (error) {
+      console.log("Error sending email:", error)
+      showToast.error("There was a problem sending email. Pls try again!")
+    } finally {
+      setIsSending(false)
+    }
   }
 
   return (
@@ -62,6 +106,7 @@ export default function Contact() {
             border: "1px solid var(--border)",
             color: "var(--text-secondary)",
           }}
+          onSubmit={handleSubmit}
         >
           <div className="mb-4 text-left">
             <label
@@ -138,6 +183,8 @@ export default function Contact() {
           </div>
 
           <motion.button
+            type="submit"
+            disabled={isSending}
             className="group flex items-center justify-center gap-3 w-full py-4 rounded-2xl font-semibold text-lg transition-all duration-300"
             style={{
               background:

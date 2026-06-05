@@ -6,7 +6,7 @@ export const personalInfo = {
   name: "Emmanouil Smyrnakis",
   shortName: "Manos",
   role: "Software Engineer",
-  location: "Chania, Crete, Greece",
+  location: "Crete, Greece",
   email: "manosmyrnakis@hotmail.com",
   phone: "+30 698 341 7229",
   github: "https://github.com/msmyrn96",

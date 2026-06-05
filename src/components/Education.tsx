@@ -43,12 +43,12 @@ export default function Education() {
           <div className="relative">
             {/* Animated line */}
             <motion.div
-              className="absolute left-[9px] top-4 w-px pointer-events-none"
+              className="absolute left-[9px] top-1 w-px pointer-events-none"
               style={{
                 background:
                   "linear-gradient(to bottom, var(--accent-1), rgba(14,105,252,0.08))",
                 transformOrigin: "top",
-                height: "calc(100% - 32px)",
+                height: "calc(100% - 12px)",
               }}
               initial={{ scaleY: 0 }}
               animate={inView ? { scaleY: 1 } : {}}
@@ -60,7 +60,7 @@ export default function Education() {
                 <div key={edu.degree} className="relative pl-9">
                   {/* Timeline dot */}
                   <motion.div
-                    className="absolute left-0 top-[18px] w-[18px] h-[18px] rounded-full flex items-center justify-center"
+                    className="absolute left-[3px] top-6 w-[12px] h-[12px] rounded-full flex items-center justify-center"
                     initial={{ scale: 0, opacity: 0 }}
                     animate={inView ? { scale: 1, opacity: 1 } : {}}
                     transition={{
@@ -76,8 +76,12 @@ export default function Education() {
                     }}
                   >
                     <div
-                      className="w-[6px] h-[6px] rounded-full"
-                      style={{ background: "var(--accent-1)" }}
+                      className="w-3 h-3 rounded-full border-2 hidden md:block"
+                      style={{
+                        borderColor: "var(--accent-1)",
+                        background: "var(--accent-1)",
+                        boxShadow: "0 0 10px var(--accent-1)",
+                      }}
                     />
                   </motion.div>
 

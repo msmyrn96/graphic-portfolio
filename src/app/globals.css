@@ -85,6 +85,14 @@ body {
     0 0 60px rgba(59, 130, 246, 0.05);
 }
 
+@keyframes hero-logo-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.hero-logo-row {
+  animation: hero-logo-scroll 35s linear infinite;
+}
+
 @keyframes skill-scroll-left {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
