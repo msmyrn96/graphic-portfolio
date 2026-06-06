@@ -7,7 +7,7 @@ import { useRef, useState, useEffect } from "react"
 import { InteractiveRobotSpline } from "@/components/ui/interactive-3d-robot"
 
 const SPLINE_SCENE =
-  "https://prod.spline.design/fVRPgiT4P2ADYlHn/scene.splinecode"
+  "https://prod.spline.design/OHmdeHoIC4z7vVGi/scene.splinecode"
 
 const roles = [
   "Software Engineer",
