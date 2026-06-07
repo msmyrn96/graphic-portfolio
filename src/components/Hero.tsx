@@ -87,7 +87,7 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium mb-10 lg:mb-0 xl:mb-0"
               style={{
                 background: "rgba(14,105,252,0.1)",
@@ -105,7 +105,7 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.45 }}
+              transition={{ duration: 0.6, delay: 0.9 }}
               className="w-[50%] block md:block lg:hidden xl:hidden"
             >
               <img
@@ -119,7 +119,7 @@ export default function Hero() {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
+              transition={{ duration: 0.7, delay: 0.9 }}
               className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-5 mt-4"
               style={{ color: "var(--text)" }}
             >
@@ -132,7 +132,7 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+              transition={{ duration: 0.6, delay: 1.2 }}
               className="mb-6 w-full"
             >
               <AnimatedRoles roles={roles} />
@@ -142,7 +142,7 @@ export default function Hero() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.65 }}
+              transition={{ duration: 0.6, delay: 1.4 }}
               className="text-lg leading-relaxed mb-10 max-w-lg"
               style={{ color: "var(--text-secondary)" }}
             >
@@ -153,7 +153,7 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.75 }}
+              transition={{ duration: 0.6, delay: 1.6 }}
               className="flex flex-wrap items-center justify-center lg:justify-start gap-4"
             >
               <a
@@ -187,7 +187,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.2, delay: 0.6 }}
+            transition={{ duration: 1.2, delay: 0.8 }}
             className="relative hidden lg:block h-[640px]"
           >
             {/* Left-edge blend so the 3D canvas merges into the gradient */}
@@ -210,7 +210,7 @@ export default function Hero() {
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.6 }}
+        transition={{ delay: 2.4, duration: 0.6 }}
         style={{ color: "var(--text-muted)" }}
       >
         <span className="text-xs tracking-widest uppercase">Scroll</span>
