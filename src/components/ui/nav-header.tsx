@@ -78,7 +78,6 @@ export default function NavHeader({ links, onLinkClick }: NavHeaderProps) {
       className="relative flex w-fit items-center rounded-full p-1 gap-4"
       style={{
         background: "rgba(255,255,255,0.06)",
-        border: "1px solid rgba(59,130,246,0.25)",
         backdropFilter: "blur(12px)",
       }}
       onMouseLeave={() => setPosition((pv) => ({ ...pv, opacity: 0 }))}

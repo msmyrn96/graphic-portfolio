@@ -39,14 +39,23 @@ export default function Nav() {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <div
-          className="w-full mx-auto px-6 py-4 flex items-center justify-center"
+          className="w-full mx-auto px-6 py-4 flex items-center justify-between"
           style={{
-            borderBottom: scrolled
-              ? "1px solid rgba(59,130,246,0.12)"
-              : "1px solid transparent",
             backdropFilter: scrolled ? "blur(20px)" : "none",
           }}
         >
+          <motion.a
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            href="/"
+          >
+            <img
+              src="/images/manos-logo.png"
+              alt="Logo"
+              className="h-12 w-auto"
+            />
+          </motion.a>
           <motion.nav
             className="hidden md:block"
             initial={{ opacity: 0, y: -8 }}
