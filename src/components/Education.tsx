@@ -108,7 +108,7 @@ export default function Education() {
                         style={{ background: "rgba(14,105,252,0.1)" }}
                       >
                         <GraduationCap
-                          size={13}
+                          size={18}
                           style={{ color: "var(--accent-1)" }}
                         />
                       </div>

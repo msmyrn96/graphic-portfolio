@@ -53,25 +53,29 @@ export default function About() {
               style={{ color: "var(--text-secondary)" }}
             >
               I&apos;ve worked across startups and established companies,
-              building everything from SaaS platforms to{" "}
+              building everything from{" "}
+              <span style={{ color: "var(--accent-2)" }}>SaaS platforms</span>{" "}
+              to{" "}
               <span style={{ color: "var(--accent-2)" }}>
                 AI-powered applications
-              </span>{" "}
-              using LLMs like OpenAI and Claude. I care deeply about
-              performance, clean architecture, and user experience.
+              </span>
+              . I care deeply about performance, clean architecture, and user
+              experience. I&apos;have done research in knowledge graphs and
+              semantic web technologies — combining my academic background with
+              practical engineering.
             </p>
             <p
               className="text-lg leading-relaxed mb-6"
               style={{ color: "var(--text-secondary)" }}
             >
-              When not coding, I&apos;m exploring research in knowledge graphs
-              and semantic web technologies — combining my academic background
-              with practical engineering.
+              When not coding, I enjoy exploring new technologies and creating
+              side projects that challenge me to learn and grow. The rest of my
+              time is spent on traveling and watching sports.
             </p>
           </div>
 
           <motion.div
-            className="p-4 rounded-xl"
+            className="p-4 rounded-xl w-fit"
             style={{
               background: "rgba(59,130,246,0.05)",
               border: "1px solid rgba(59,130,246,0.2)",
@@ -82,7 +86,7 @@ export default function About() {
               Currently at <strong style={{ color: "var(--text)" }}>
                 XM
               </strong>{" "}
-              as a Software Engineer — building scalable React applications.
+              as a Software Engineer.
             </p>
           </motion.div>
         </motion.div>

@@ -88,7 +88,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium mb-10"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium mb-10 lg:mb-0 xl:mb-0"
               style={{
                 background: "rgba(14,105,252,0.1)",
                 border: "1px solid rgba(14,105,252,0.25)",
