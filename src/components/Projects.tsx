@@ -2,12 +2,18 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { ExternalLink, ArrowUpRight } from "lucide-react"
-import { projects } from "@/lib/data"
+import { ArrowUpRight } from "lucide-react"
+import { projects, personalInfo } from "@/lib/data"
+import { GithubIcon } from "./Icons"
+import { useIsMobile } from "@/lib/utils"
 
 export default function Projects() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: "-80px" })
+  const isMobile = useIsMobile()
+  const githubButtonText = isMobile
+    ? "GitHub"
+    : "Check my GitHub for more projects"
 
   return (
     <section id="projects" className="py-32 px-6 max-w-6xl mx-auto" ref={ref}>
@@ -35,6 +41,29 @@ export default function Projects() {
           />
         ))}
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, delay: projects.length * 0.12 + 0.2 }}
+        className="mt-12 flex justify-center"
+      >
+        <a
+          href={personalInfo.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
+          style={{
+            background: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(255,255,255,0.1)",
+            backdropFilter: "blur(12px)",
+            color: "var(--text)",
+          }}
+        >
+          <GithubIcon size={17} />
+          {githubButtonText}
+        </a>
+      </motion.div>
     </section>
   )
 }

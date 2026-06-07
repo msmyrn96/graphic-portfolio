@@ -107,6 +107,14 @@ body {
 .skill-row-right {
   animation: skill-scroll-right 40s linear infinite;
 }
+@media (max-width: 640px) {
+  .skill-row-left  { animation-duration: 20s; }
+  .skill-row-right { animation-duration: 20s; }
+}
+@media (min-width: 641px) and (max-width: 1024px) {
+  .skill-row-left  { animation-duration: 30s; }
+  .skill-row-right { animation-duration: 30s; }
+}
 .skill-carousel:hover .skill-row-left,
 .skill-carousel:hover .skill-row-right {
   animation-play-state: paused;

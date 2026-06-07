@@ -45,12 +45,6 @@ export default function Hero() {
         }}
       >
         <div />
-        <div
-          style={{
-            borderLeft: "1px solid rgba(14,105,252,0.08)",
-            borderRight: "1px solid rgba(14,105,252,0.08)",
-          }}
-        />
         <div />
       </div>
 
@@ -108,12 +102,25 @@ export default function Hero() {
               Open to new opportunities
             </motion.div>
 
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.45 }}
+              className="w-[50%] block md:block lg:hidden xl:hidden"
+            >
+              <img
+                src="/images/computer.png"
+                alt="Hi wave"
+                className="w-full h-auto mx-auto scale-[3]"
+              />
+            </motion.div>
+
             {/* Heading */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-5"
+              className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-5 mt-4"
               style={{ color: "var(--text)" }}
             >
               Hi, I&apos;m{" "}
