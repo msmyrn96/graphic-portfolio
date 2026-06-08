@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
 import { Mail } from "lucide-react"
-import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect"
+import { TypewriterRotatingWord } from "@/components/ui/typewriter-effect"
 import { headingWords } from "@/lib/data"
 import { showToast } from "nextjs-toast-notify"
 
@@ -23,7 +23,7 @@ export default function Contact() {
         transition={{ duration: 0.7 }}
         className="text-center max-w-2xl mx-auto mb-16"
       >
-        <TypewriterEffectSmooth
+        <TypewriterRotatingWord
           words={headingWords}
           className="justify-center mb-4"
           textClassName="text-3xl sm:text-4xl"

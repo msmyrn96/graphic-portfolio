@@ -2,100 +2,18 @@
 
 import { cn } from "@/lib/utils"
 import { motion, stagger, useAnimate, useInView } from "framer-motion"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 type Word = {
   text: string
   className?: string
 }
 
-export const TypewriterEffect = ({
-  words,
-  className,
-  cursorClassName,
-}: {
-  words: Word[]
-  className?: string
-  cursorClassName?: string
-}) => {
-  const wordsArray = words.map((word) => ({
-    ...word,
-    text: word.text.split(""),
-  }))
-  const [scope, animate] = useAnimate()
-  const isInView = useInView(scope)
-
-  useEffect(() => {
-    if (!isInView) return
-
-    let cancelled = false
-
-    const run = async () => {
-      while (!cancelled) {
-        await animate(
-          "span",
-          { display: "inline-block", opacity: 1, width: "fit-content" },
-          { duration: 0.3, delay: stagger(0.1), ease: "easeInOut" },
-        )
-        if (cancelled) break
-        await new Promise((r) => setTimeout(r, 3000))
-        if (cancelled) break
-        await animate(
-          "span",
-          { opacity: 0, width: 0 },
-          {
-            duration: 0.15,
-            delay: stagger(0.05, { from: "last" }),
-            ease: "easeInOut",
-          },
-        )
-        if (cancelled) break
-        await new Promise((r) => setTimeout(r, 400))
-      }
-    }
-
-    run()
-    return () => {
-      cancelled = true
-    }
-  }, [isInView, animate])
-
-  return (
-    <div className={cn("font-bold text-center", className)}>
-      <motion.div ref={scope} className="inline">
-        {wordsArray.map((word, idx) => (
-          <div key={`word-${idx}`} className="inline-block">
-            {word.text.map((char, index) => (
-              <motion.span
-                key={`char-${index}`}
-                initial={{ opacity: 0, width: 0 }}
-                className={cn(
-                  "opacity-0 hidden text-[var(--text)]",
-                  word.className,
-                )}
-              >
-                {char}
-              </motion.span>
-            ))}
-            &nbsp;
-          </div>
-        ))}
-      </motion.div>
-      <motion.span
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
-        className={cn(
-          "inline-block rounded-sm w-[4px] h-[0.8em] align-middle",
-          cursorClassName,
-        )}
-        style={{ background: "var(--accent-1)" }}
-      />
-    </div>
-  )
-}
-
-export const TypewriterEffectSmooth = ({
+/**
+ * Shows the first word statically, then cycles through every word —
+ * typing each one in, holding, erasing it, and moving to the next (looping forever).
+ */
+export const TypewriterRotatingWord = ({
   words,
   className,
   textClassName,
@@ -106,56 +24,71 @@ export const TypewriterEffectSmooth = ({
   textClassName?: string
   cursorClassName?: string
 }) => {
-  const wordsArray = words.map((word) => ({
-    ...word,
-    text: word.text.split(""),
-  }))
-
-  const renderWords = () => (
-    <div>
-      {wordsArray.map((word, idx) => (
-        <div key={`word-${idx}`} className="inline-block">
-          {word.text.map((char, index) => (
-            <span
-              key={`char-${index}`}
-              className={cn("text-[var(--text)]", word.className)}
-            >
-              {char}
-            </span>
-          ))}
-          &nbsp;
-        </div>
-      ))}
-    </div>
+  const [index, setIndex] = useState(0)
+  const [phase, setPhase] = useState<"static" | "erase" | "type" | "hold">(
+    "static",
   )
 
+  // Pause on the static first word, and on each fully-typed word, before erasing.
+  useEffect(() => {
+    if (phase !== "static" && phase !== "hold") return
+    const delay = phase === "static" ? 1600 : 1800
+    const timer = setTimeout(() => setPhase("erase"), delay)
+    return () => clearTimeout(timer)
+  }, [phase])
+
+  const word = words[index]
+
   return (
-    <div className={cn("flex items-center space-x-1", className)}>
-      <motion.div
-        className="overflow-hidden pb-1"
-        initial={{ width: "0%" }}
-        whileInView={{ width: "fit-content" }}
-        viewport={{ once: false }}
-        transition={{
-          duration: 2,
-          ease: "linear",
-          delay: 0.3,
-          repeat: Infinity,
-          repeatType: "mirror",
-          repeatDelay: 3.5,
+    <span
+      className={cn("inline-flex items-baseline flex flex-wrap", className)}
+    >
+      <span
+        className={cn(
+          "inline-block whitespace-nowrap font-bold text-[var(--text)]",
+          textClassName,
+        )}
+      >
+        Let's&nbsp;
+      </span>
+      <motion.span
+        className="inline-block overflow-hidden whitespace-nowrap align-bottom"
+        initial={false}
+        animate={{ width: phase === "erase" ? 0 : "auto" }}
+        transition={
+          phase === "static"
+            ? { duration: 0 }
+            : { duration: 0.45, ease: "easeInOut" }
+        }
+        onAnimationComplete={() => {
+          if (phase === "erase") {
+            setIndex((i) => (i + 1) % words.length)
+            setPhase("type")
+          } else if (phase === "type") {
+            setPhase("hold")
+          }
         }}
       >
-        <div className={cn("font-bold whitespace-nowrap", textClassName)}>
-          {renderWords()}
-        </div>
-      </motion.div>
+        <span
+          className={cn(
+            "inline-block font-bold text-[var(--text)]",
+            textClassName,
+            word.className,
+          )}
+        >
+          {word.text}
+        </span>
+      </motion.span>
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
-        className={cn("inline-block rounded-sm w-[3px]", cursorClassName)}
+        className={cn(
+          "inline-block rounded-sm w-[3px] ml-1 self-stretch",
+          cursorClassName,
+        )}
         style={{ background: "var(--accent-1)" }}
       />
-    </div>
+    </span>
   )
 }

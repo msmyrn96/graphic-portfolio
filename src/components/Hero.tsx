@@ -2,19 +2,10 @@
 
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { ArrowDown } from "lucide-react"
-import { personalInfo } from "@/lib/data"
+import { personalInfo, roles, SPLINE_SCENE } from "@/lib/data"
 import { useRef, useState, useEffect } from "react"
 import { InteractiveRobotSpline } from "@/components/ui/interactive-3d-robot"
-
-const SPLINE_SCENE =
-  "https://prod.spline.design/OHmdeHoIC4z7vVGi/scene.splinecode"
-
-const roles = [
-  "Software Engineer",
-  "Frontend Developer",
-  "Full-Stack Developer",
-  "AI Integrator",
-]
+import { AnimatedRoles } from "./ui/custom-components/AnimatedRoles"
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null)
@@ -222,42 +213,5 @@ export default function Hero() {
         </motion.div>
       </motion.div>
     </section>
-  )
-}
-
-function AnimatedRoles({ roles }: { roles: string[] }) {
-  const [index, setIndex] = useState(0)
-
-  useEffect(() => {
-    const timer = setInterval(
-      () => setIndex((i) => (i + 1) % roles.length),
-      1500,
-    )
-    return () => clearInterval(timer)
-  }, [roles.length])
-
-  return (
-    <div className="relative h-10 sm:h-12 flex items-center justify-center lg:justify-start">
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={roles[index]}
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -14 }}
-          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute text-2xl sm:text-3xl font-semibold"
-          style={{ color: "var(--text-secondary)" }}
-        >
-          {roles[index]}
-        </motion.span>
-      </AnimatePresence>
-      {/* invisible spacer keeps height stable across role text lengths */}
-      <span
-        className="invisible text-2xl sm:text-3xl font-semibold"
-        aria-hidden="true"
-      >
-        {roles.reduce((a, b) => (a.length >= b.length ? a : b))}
-      </span>
-    </div>
   )
 }

@@ -208,9 +208,9 @@ export const personalLinks = [
 ]
 
 export const headingWords = [
-  { text: "Let's" },
-  { text: "work" },
-  { text: "together.", className: "text-[var(--accent-2)]" },
+  { text: "have a chat.", className: "text-[var(--accent-2)]" },
+  { text: "explore opportunities.", className: "text-[var(--accent-2)]" },
+  { text: "work together.", className: "text-[var(--accent-2)]" },
 ]
 
 export const imageInfoText = [
@@ -293,4 +293,14 @@ export const Row_2_Tools: IconItem[] = [
     url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
     name: "HTML5",
   },
+]
+
+export const SPLINE_SCENE =
+  "https://prod.spline.design/OHmdeHoIC4z7vVGi/scene.splinecode"
+
+export const roles = [
+  "Software Engineer",
+  "Frontend Developer",
+  "Full-Stack Developer",
+  "AI Integrator",
 ]
