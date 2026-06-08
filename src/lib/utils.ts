@@ -1,3 +1,4 @@
+import { IconItem } from "@/components/ui/custom-components/IconTile"
 import { clsx, type ClassValue } from "clsx"
 import { useEffect, useState } from "react"
 import { twMerge } from "tailwind-merge"
@@ -17,3 +18,6 @@ export function useIsMobile(breakpoint = 640) {
   }, [breakpoint])
   return isMobile
 }
+
+export const repeat = (icons: IconItem[], times = 4) =>
+  Array.from({ length: times }).flatMap(() => icons)
