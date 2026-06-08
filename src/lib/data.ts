@@ -1,5 +1,5 @@
 import { GithubIcon, LinkedinIcon } from "@/components/Icons"
-import { IconItem } from "@/components/Skills"
+import { IconItem } from "@/components/ui/custom-components/IconTile"
 import { ExternalLink, Flag, Globe, Mail, MapPin } from "lucide-react"
 
 export const personalInfo = {
